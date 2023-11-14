@@ -5,8 +5,9 @@ import CardGrid from './components/CardGrid';
 export default function App() {
   return (
     <Grid templateAreas={{
+      //these are like media queries, only shows some of these based on screen size. base is like mobile resolutions
       base: `"nav" "main"`,
-      lg: `"nav nav" "aside main"`
+      lg: `"nav nav" "aside main"` //wider than 1024 pixels
     }}>
       <GridItem area={"nav"} bg={"tomato"}>
         <NavBar />

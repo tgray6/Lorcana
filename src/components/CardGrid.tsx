@@ -1,23 +1,8 @@
-import { useState, useEffect } from "react";
-import apiClient from "../services/api-client";
-import { Card } from "../types/types";
 import { Text, Box, Image, Flex } from "@chakra-ui/react";
+import useCards from "../hooks/useCards";
 
 export default function CardGrid() {
-    const [cards, setCards] = useState<Card[]>([]);
-    const [error, setError] = useState("");
-
-    useEffect(() => {
-        apiClient.get<Card[]>("/")
-            .then(res => {
-                setCards(Object.values(res.data));
-                // console.log(Object.values(res.data)[0]["card-number"]);
-            })
-            .catch(err => {
-                setError(err.message);
-                console.log(err);
-            });
-    }, []);
+    const { cards, error } = useCards();
 
     return (
         <>
