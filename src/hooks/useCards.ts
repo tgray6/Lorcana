@@ -1,31 +1,30 @@
 import { useState, useEffect } from "react";
 import apiClient from "../services/api-client";
-import { Card } from "../types/types";
+import { ICard } from "../types/types";
 import { CanceledError } from "axios";
 
 export default function useCards() {
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<ICard[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
 
+    setIsLoading(true);
     apiClient
-      .get<Card[]>("/", { signal: controller.signal })
+      .get<ICard[]>("/fetch", { signal: controller.signal })
       .then((res) => {
-        setCards(Object.values(res.data));
-        // console.log(Object.values(res.data)[0]["card-number"]);
+        setCards(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
-        if (err instanceof CanceledError) {
-          return;
-        } else {
-          setError(err.message);
-          console.log(err);
-        }
+        if (err instanceof CanceledError) return;
+        setIsLoading(false);
+        setError(err.message);
       });
     return () => controller.abort();
   }, []);
 
-  return { cards, error };
+  return { cards, error, isLoading };
 }

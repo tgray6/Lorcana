@@ -1,29 +1,16 @@
-export interface Card {
-  traits: string[];
-  set: string;
-  "lore-value": number;
-  "card-number": number;
-  color: string;
-  strength: number;
-  artist: string;
-  willpower: number;
-  type: string;
-  subtypes: string[];
-  "set-code": string;
-  abilities: Record<string, string>;
-  inkable: boolean;
-  "body-text": string;
-  subtitle: string;
-  "image-urls": {
-    small: string;
-    "no-art": string;
-    large: string;
-    "art-crop": string;
-    medium: string;
-    foil: string;
-  };
-  name: string;
-  "flavor-text": string;
-  "ink-cost": number;
-  rarity: string;
+export interface ICard {
+  Artist: string;
+  Set_Name: string;
+  Set_Num: number;
+  Color: string;
+  Image: string;
+  Cost: number;
+  Inkable: boolean;
+  Name: string;
+  Type: string;
+  Rarity: string;
+  Flavor_Text: string;
+  Card_Num: number;
+  Body_Text: string;
+  Set_ID: string;
 }
