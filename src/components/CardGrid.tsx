@@ -1,6 +1,6 @@
 import { Text, Flex } from "@chakra-ui/react";
 import useCards from "../hooks/useCards";
-import LorcanaCard from "./Card";
+import LorcanaCard from "./LorcanaCard";
 import { Skeleton } from "@chakra-ui/react";
 import CardContainer from "./CardContainer";
 
@@ -13,9 +13,8 @@ export default function CardGrid() {
   const RenderContent = () => {
     if (isLoading) {
       return skeletons.map((skeleton) => (
-        <CardContainer>
+        <CardContainer key={`skeleton-${skeleton}`}>
           <Skeleton
-            key={skeleton}
             startColor="pink.500"
             endColor="orange.500"
             height="475px"
@@ -25,7 +24,7 @@ export default function CardGrid() {
       ));
     } else {
       return cards.map((card) => (
-        <CardContainer>
+        <CardContainer key={card.Name}>
           <LorcanaCard card={card} />
         </CardContainer>
       ));

@@ -6,12 +6,5 @@ interface Props {
 }
 
 export default function LorcanaCard({ card }: Props) {
-  return (
-    <Image
-      key={card.Card_Num}
-      src={card.Image}
-      alt={card.Name}
-      borderRadius="1.2rem"
-    />
-  );
+  return <Image src={card.Image} alt={card.Name} borderRadius="1.2rem" />;
 }

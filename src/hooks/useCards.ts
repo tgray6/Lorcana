@@ -13,7 +13,7 @@ export default function useCards() {
 
     setIsLoading(true);
     apiClient
-      .get<ICard[]>("/fetch", { signal: controller.signal })
+      .get<ICard[]>("/all?page=1", { signal: controller.signal })
       .then((res) => {
         setCards(res.data);
         setIsLoading(false);
