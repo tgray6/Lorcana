@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import apiClient from "../services/api-client";
-import { ICard } from "../types/types";
+import { ISet } from "../types/types";
 import { CanceledError } from "axios";
 
 export default function useCards() {
-  const [cards, setCards] = useState<ICard[]>([]);
+  const [set, setSet] = useState<ISet[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -13,9 +13,9 @@ export default function useCards() {
 
     setIsLoading(true);
     apiClient
-      .get<ICard[]>("/cards/all?page=1", { signal: controller.signal })
+      .get<ISet[]>("/sets/fetch", { signal: controller.signal })
       .then((res) => {
-        setCards(res.data);
+        setSet(res.data);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -26,5 +26,5 @@ export default function useCards() {
     return () => controller.abort();
   }, []);
 
-  return { cards, error, isLoading };
+  return { set, error, isLoading };
 }

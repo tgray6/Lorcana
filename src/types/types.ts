@@ -14,3 +14,11 @@ export interface ICard {
   Body_Text: string;
   Set_ID: string;
 }
+
+export interface ISet {
+  Set_Num: number;
+  Release_Date: Date;
+  Cards: number;
+  Name: string;
+  Set_ID: string;
+}

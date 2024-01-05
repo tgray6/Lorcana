@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://api.lorcana-api.com/cards",
+  baseURL: "https://api.lorcana-api.com",
 });

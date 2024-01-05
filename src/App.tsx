@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import CardGrid from "./components/CardGrid";
+import SetList from "./components/SetList";
 
 export default function App() {
   return (
@@ -22,7 +23,7 @@ export default function App() {
           width={"125px"}
           h={"100%vh"}
         >
-          Aside
+          <SetList />
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={"5px"}>
