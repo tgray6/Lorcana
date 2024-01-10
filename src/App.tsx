@@ -19,8 +19,8 @@ export default function App() {
         <GridItem
           area={"aside"}
           bg={"gray"}
-          maxWidth={"125px"}
-          width={"125px"}
+          maxWidth={"180px"}
+          width={"180px"}
           h={"100%vh"}
         >
           <SetList />
