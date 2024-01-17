@@ -18,7 +18,7 @@ export default function CardGrid() {
             startColor="pink.500"
             endColor="orange.500"
             height="475px"
-            width="350px"
+            width="335px"
           />
         </CardContainer>
       ));

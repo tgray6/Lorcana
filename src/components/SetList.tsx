@@ -8,6 +8,10 @@ export default function SetList() {
   const { data, error, isLoading } = useSets();
 
   const RenderContent = () => {
+    if (error) {
+      return null;
+    }
+
     if (isLoading) {
       return (
         <Flex
@@ -62,7 +66,6 @@ export default function SetList() {
 
   return (
     <>
-      {error && <Text>{error}</Text>}
       <Flex flexWrap={"wrap"}>{RenderContent()}</Flex>
     </>
   );
