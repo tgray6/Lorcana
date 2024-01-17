@@ -1,33 +1,44 @@
-import { Text, Flex, Spacer } from "@chakra-ui/react";
+import { Text, Flex } from "@chakra-ui/react";
+import { Button, Box } from "@chakra-ui/react";
 import useSets from "../hooks/useSets";
-import { Button, ButtonGroup, Box } from "@chakra-ui/react";
+import floodBornLogo from "../assets/floodbornLogo.webp";
+import firstChapterLogo from "../assets/firstChapterLogo.webp";
 
 export default function SetList() {
-  const { set, error, isLoading } = useSets();
+  const { data, error, isLoading } = useSets();
 
   const RenderContent = () => {
     if (isLoading) {
       return <p>Loading...</p>;
     } else {
-      return set.map((set) => (
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
+      return data.map((set) => (
+        <Button
+          key={set.Set_ID}
           width="100%"
           py={12}
-          bg={set.Set_ID === "TFC" ? "purple" : "black"}
-          // bgImage="url('https://bit.ly/2Z4KKcF')"
-          // bgPosition="center"
-          // bgRepeat="no-repeat"
-          position="relative"
-          mb={2}
-        >
-          {" "}
-          <Button h={"100%"} w={"100%"} position="absolute" key={set.Set_ID}>
-            {set.Name}
-          </Button>
-        </Box>
+          // bg={set.Set_ID === "TFC" ? "purple" : "black"}
+          bgImage={
+            set.Set_ID === "TFC"
+              ? firstChapterLogo
+              : set.Set_ID === "RFB"
+              ? floodBornLogo
+              : "New Expansion, No Image, Update Frontend"
+          }
+          bgPosition="center"
+          bgRepeat="no-repeat"
+          bgSize={"100%"}
+          bgColor={"transparent"}
+          m={2}
+          _hover={{
+            // Add styles that should be maintained while the button is being hovered
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+          }}
+          _active={{
+            // Add styles that should be maintained while the button is being clicked
+            opacity: 0.5,
+          }}
+          onClick={() => console.log("waaat")}
+        />
       ));
     }
   };

@@ -12,7 +12,7 @@ export default function App() {
         lg: `"nav nav" "aside main"`, //wider than 1024 pixels
       }}
     >
-      <GridItem area={"nav"} bg={"tomato"}>
+      <GridItem area={"nav"} bg={"#F6AD55"}>
         <NavBar />
       </GridItem>
       <Show above="lg">

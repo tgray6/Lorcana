@@ -1,13 +1,13 @@
 import { HStack, Image } from "@chakra-ui/react";
-import steel from "../assets/steel.svg";
+import lorcanaLogo from "../assets/lorcanaLogo.png";
 import ColorModeSwitch from "./ColorModeSwitch";
 
 export default function NavBar() {
-    return (
-        <HStack justifyContent={'space-between'} padding={"10px"}>
-            <Image src={steel} boxSize={"80px"} />
-            <p>NavBar</p>
-            <ColorModeSwitch />
-        </HStack>
-    );
+  return (
+    <HStack justifyContent={"space-between"} px={"10px"}>
+      <p>NavBar</p>
+      <Image src={lorcanaLogo} position={"relative"} h={"125px"} p={2} />
+      <ColorModeSwitch />
+    </HStack>
+  );
 }
