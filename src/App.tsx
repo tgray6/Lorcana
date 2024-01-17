@@ -26,6 +26,7 @@ export default function App() {
           maxWidth={"180px"}
           width={"180px"}
           h={"100%vh"}
+          borderRight="4px solid #000"
         >
           <SetList />
         </GridItem>
