@@ -1,10 +1,15 @@
-import { Text, Flex, Spinner } from "@chakra-ui/react";
+import { Flex, Spinner } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import useSets from "../hooks/useSets";
 import floodBornLogo from "../assets/floodbornLogo.webp";
 import firstChapterLogo from "../assets/firstChapterLogo.webp";
+import { ISet } from "../types/types";
 
-export default function SetList() {
+interface Props {
+  onSelectSet: (set: ISet) => void;
+}
+
+export default function SetList({ onSelectSet }: Props) {
   const { data, error, isLoading } = useSets();
 
   const RenderContent = () => {
@@ -52,13 +57,13 @@ export default function SetList() {
           m={2}
           _hover={{
             // Add styles that should be maintained while the button is being hovered
-            boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 1)",
           }}
           _active={{
             // Add styles that should be maintained while the button is being clicked
             opacity: 0.5,
           }}
-          onClick={() => console.log("waaat")}
+          onClick={() => onSelectSet(set)}
         />
       ));
     }

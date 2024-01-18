@@ -2,8 +2,16 @@ import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import CardGrid from "./components/CardGrid";
 import SetList from "./components/SetList";
+import { useState } from "react";
+import { ISet } from "./types/types";
 
 export default function App() {
+  const [lorcanaSet, setlorcanaSet] = useState<ISet | null>(null);
+
+  const handleClick = (set: ISet): void => {
+    setlorcanaSet(set);
+  };
+
   return (
     <Grid
       templateAreas={{
@@ -28,11 +36,11 @@ export default function App() {
           h={"100%vh"}
           borderRight="4px solid #000"
         >
-          <SetList />
+          <SetList onSelectSet={handleClick} />
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={"5px"}>
-        <CardGrid />
+        <CardGrid selectedSet={null} />
       </GridItem>
     </Grid>
   );

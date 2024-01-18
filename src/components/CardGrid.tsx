@@ -3,9 +3,14 @@ import LorcanaCard from "./LorcanaCard";
 import { Skeleton } from "@chakra-ui/react";
 import CardContainer from "./CardContainer";
 import useCards from "../hooks/useCards";
+import { ISet } from "../types/types";
 
-export default function CardGrid() {
-  const { data, error, isLoading } = useCards();
+interface Props {
+  selectedSet: ISet | null;
+}
+
+export default function CardGrid({ selectedSet }: Props) {
+  const { data, error, isLoading } = useCards(selectedSet);
   const skeletons = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];

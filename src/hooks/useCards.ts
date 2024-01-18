@@ -1,7 +1,7 @@
-import { ICard } from "../types/types";
+import { ICard, ISet } from "../types/types";
 import useData from "./useData";
 
-export default function useCards() {
+export default function useCards(selectedSet: ISet | null) {
   return useData<ICard>("/cards/all?page=1");
 }
 
