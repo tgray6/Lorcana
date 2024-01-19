@@ -9,7 +9,7 @@ export default function CardContainer({ children }: Props) {
   return (
     <Card
       p={2}
-      height={"475px"}
+      height={"485px"}
       width={"350px"}
       borderRadius={"1.2rem"}
       margin={2}

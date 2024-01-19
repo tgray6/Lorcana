@@ -6,10 +6,10 @@ import { useState } from "react";
 import { ISet } from "./types/types";
 
 export default function App() {
-  const [lorcanaSet, setlorcanaSet] = useState<ISet | null>(null);
+  const [selectedSet, setSelectedSet] = useState<ISet | null>(null);
 
   const handleClick = (set: ISet): void => {
-    setlorcanaSet(set);
+    setSelectedSet(set);
   };
 
   return (
@@ -40,7 +40,7 @@ export default function App() {
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={"5px"}>
-        <CardGrid selectedSet={null} />
+        <CardGrid selectedSet={selectedSet} />
       </GridItem>
     </Grid>
   );

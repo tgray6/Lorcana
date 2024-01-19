@@ -15,7 +15,13 @@ export default function CardGrid({ selectedSet }: Props) {
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];
 
+  // // // //cleaned up my if null return data else data.filter function to this. null will return whatever the default api returns, the filter will filter based on the set button clicked
+  // const filteredCardsBySet = data.filter(
+  //   (card) => selectedSet === null || card.Set_ID.includes(selectedSet.Set_ID)
+  // );
+
   const RenderContent = () => {
+    console.log(data);
     if (isLoading) {
       return skeletons.map((skeleton) => (
         <CardContainer key={`skeleton-${skeleton}`}>
