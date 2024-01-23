@@ -15,8 +15,9 @@ export default function SetButton({ onSelectSet, set, active }: Props) {
       key={set.Set_ID}
       width="100%"
       py={12}
-      border={active ? "2px" : ""}
-      // bg={set.Set_ID === "TFC" ? "purple" : "black"}
+      border={active ? "3px solid #F6AD55" : ""}
+      boxShadow={active ? "0 0 10px rgba(0, 0, 0, 1)" : ""}
+      borderRadius={"10px"}
       bgImage={
         set.Set_ID === "TFC"
           ? firstChapterLogo
