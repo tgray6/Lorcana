@@ -1,9 +1,8 @@
 import { Flex, Spinner } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
 import useSets from "../hooks/useSets";
-import floodBornLogo from "../assets/floodbornLogo.webp";
-import firstChapterLogo from "../assets/firstChapterLogo.webp";
 import { ISet } from "../types/types";
+import { useState } from "react";
+import SetButton from "./SetButton";
 
 interface Props {
   onSelectSet: (set: ISet) => void;
@@ -11,6 +10,16 @@ interface Props {
 
 export default function SetList({ onSelectSet }: Props) {
   const { data, error, isLoading } = useSets();
+  //set TFC as default because it is the Set_ID for the cards we fetch on initial load
+  const [activeButton, setActiveButton] = useState<string | null>("TFC");
+
+  const handleSetButtonClick = (set: ISet) => {
+    //checks if the Set_ID of the clicked button is equal to the current active button. If they are equal, it keeps the state unchanged (currentActive). Otherwise, it sets the state to the Set_ID of the clicked button.
+    setActiveButton(set.Set_ID === activeButton ? activeButton : set.Set_ID);
+
+    // Call onSelectSet to handle other actions
+    onSelectSet(set);
+  };
 
   const RenderContent = () => {
     if (error) {
@@ -38,32 +47,13 @@ export default function SetList({ onSelectSet }: Props) {
       );
     } else {
       return data.map((set) => (
-        <Button
-          key={set.Set_ID}
-          width="100%"
-          py={12}
-          // bg={set.Set_ID === "TFC" ? "purple" : "black"}
-          bgImage={
-            set.Set_ID === "TFC"
-              ? firstChapterLogo
-              : set.Set_ID === "RFB"
-              ? floodBornLogo
-              : "New Expansion, No Image, Update Frontend"
-          }
-          bgPosition="center"
-          bgRepeat="no-repeat"
-          bgSize={"100%"}
-          bgColor={"transparent"}
-          m={2}
-          _hover={{
-            // Add styles that should be maintained while the button is being hovered
-            boxShadow: "0 0 10px rgba(0, 0, 0, 1)",
+        <SetButton
+          onSelectSet={() => {
+            onSelectSet(set);
+            handleSetButtonClick(set);
           }}
-          _active={{
-            // Add styles that should be maintained while the button is being clicked
-            opacity: 0.5,
-          }}
-          onClick={() => onSelectSet(set)}
+          set={set}
+          active={activeButton === set.Set_ID}
         />
       ));
     }
