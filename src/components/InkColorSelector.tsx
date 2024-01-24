@@ -17,14 +17,25 @@ import {
   steel,
 } from "../assets/images";
 
-export default function InkColorSelector() {
+import { InkColor } from "../types/types";
+
+interface Props {
+  onSelectInkColor: (color: InkColor) => void;
+}
+
+export default function InkColorSelector({ onSelectInkColor }: Props) {
+  const handleInkButtonClick = (color: InkColor) => {
+    // Call onSelectSet to handle other actions
+    onSelectInkColor(color);
+  };
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Filter
+        Filter By Ink Color
       </MenuButton>
       <MenuList>
-        <MenuItem>
+        <MenuItem onClick={() => handleInkButtonClick("Amber")}>
           <Image
             boxSize="2rem"
             borderRadius="full"
@@ -34,7 +45,7 @@ export default function InkColorSelector() {
           />
           <span>Amber</span>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => handleInkButtonClick("Amethyst")}>
           <Image
             boxSize="2rem"
             borderRadius="full"
@@ -44,7 +55,7 @@ export default function InkColorSelector() {
           />
           <span>Amethyst</span>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => handleInkButtonClick("Emerald")}>
           <Image
             boxSize="2rem"
             borderRadius="full"
@@ -54,7 +65,7 @@ export default function InkColorSelector() {
           />
           <span>Emerald</span>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => handleInkButtonClick("Ruby")}>
           <Image
             boxSize="2rem"
             borderRadius="full"
@@ -64,7 +75,7 @@ export default function InkColorSelector() {
           />
           <span>Ruby</span>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => handleInkButtonClick("Sapphire")}>
           <Image
             boxSize="2rem"
             borderRadius="full"
@@ -74,7 +85,7 @@ export default function InkColorSelector() {
           />
           <span>Sapphire</span>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => handleInkButtonClick("Steel")}>
           <Image
             boxSize="2rem"
             borderRadius="full"
@@ -84,8 +95,12 @@ export default function InkColorSelector() {
           />
           <span>Steel</span>
         </MenuItem>
-        <MenuItem as={Button} rightIcon={<RxReset />}>
-          Reset Filters
+        <MenuItem
+          onClick={() => handleInkButtonClick(null)}
+          as={Button}
+          rightIcon={<RxReset />}
+        >
+          Reset Filter
         </MenuItem>
       </MenuList>
     </Menu>

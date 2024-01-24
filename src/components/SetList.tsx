@@ -48,6 +48,7 @@ export default function SetList({ onSelectSet }: Props) {
     } else {
       return data.map((set) => (
         <SetButton
+          key={set.Set_ID}
           onSelectSet={() => {
             onSelectSet(set);
             handleSetButtonClick(set);

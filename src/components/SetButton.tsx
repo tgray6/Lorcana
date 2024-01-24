@@ -12,7 +12,6 @@ interface Props {
 export default function SetButton({ onSelectSet, set, active }: Props) {
   return (
     <Button
-      key={set.Set_ID}
       width="100%"
       py={12}
       border={active ? "3px solid #F6AD55" : ""}

@@ -1,16 +1,58 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Show, Image, HStack } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import CardGrid from "./components/CardGrid";
 import SetList from "./components/SetList";
 import { useState } from "react";
 import { ISet } from "./types/types";
 import InkColorSelector from "./components/InkColorSelector";
+import { InkColor } from "./types/types";
+import {
+  sapphire,
+  ruby,
+  amber,
+  emerald,
+  amethyst,
+  steel,
+} from "./assets/images";
 
 export default function App() {
   const [selectedSet, setSelectedSet] = useState<ISet | null>(null);
+  const [selectedInkColor, setSelectedInkColor] = useState<InkColor | null>(
+    null
+  );
 
   const handleClick = (set: ISet): void => {
     setSelectedSet(set);
+  };
+
+  const handleInkColorFilterClick = (color: InkColor): void => {
+    setSelectedInkColor(color);
+  };
+
+  const renderSelectedInkColor = (selectedInkColor: InkColor) => {
+    switch (selectedInkColor) {
+      case "Ruby": {
+        return ruby;
+      }
+      case "Emerald": {
+        return emerald;
+      }
+      case "Sapphire": {
+        return sapphire;
+      }
+      case "Steel": {
+        return steel;
+      }
+      case "Amber": {
+        return amber;
+      }
+      case "Amethyst": {
+        return amethyst;
+      }
+      case null: {
+        return;
+      }
+    }
   };
 
   return (
@@ -41,8 +83,22 @@ export default function App() {
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={"5px"}>
-        <InkColorSelector />
-        <CardGrid selectedSet={selectedSet} />
+        <HStack>
+          <InkColorSelector onSelectInkColor={handleInkColorFilterClick} />
+          {selectedInkColor !== null && (
+            <Image
+              boxSize="3rem"
+              borderRadius="full"
+              src={renderSelectedInkColor(selectedInkColor)}
+              alt="InkColor"
+              mr="12px"
+            />
+          )}
+        </HStack>
+        <CardGrid
+          selectedSet={selectedSet}
+          selectedInkColor={selectedInkColor}
+        />
       </GridItem>
     </Grid>
   );

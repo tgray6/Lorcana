@@ -3,25 +3,33 @@ import LorcanaCard from "./LorcanaCard";
 import { Skeleton } from "@chakra-ui/react";
 import CardContainer from "./CardContainer";
 import useCards from "../hooks/useCards";
-import { ISet } from "../types/types";
+import { ISet, InkColor } from "../types/types";
 
 interface Props {
   selectedSet: ISet | null;
+  selectedInkColor: InkColor | null;
 }
 
-export default function CardGrid({ selectedSet }: Props) {
+export default function CardGrid({ selectedSet, selectedInkColor }: Props) {
   const { data, error, isLoading } = useCards(selectedSet);
   const skeletons = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];
 
-  // cleaned up my if null return data else data.filter function to this. null will return whatever the default api returns, the filter will filter based on the set button clicked
-  const filteredCardsBySet = data.filter(
-    (card) => selectedSet === null || card.Set_ID.includes(selectedSet.Set_ID)
-  );
+  const filteredCards = data
+    .filter(
+      (card) => selectedSet === null || card.Set_ID.includes(selectedSet.Set_ID)
+    )
+    .filter(
+      (card) =>
+        selectedInkColor === null || card.Color.includes(selectedInkColor)
+    );
 
   const RenderContent = () => {
-    console.log(data);
+    if (error) {
+      return null;
+    }
+
     if (isLoading) {
       return skeletons.map((skeleton) => (
         <CardContainer key={`skeleton-${skeleton}`}>
@@ -34,7 +42,7 @@ export default function CardGrid({ selectedSet }: Props) {
         </CardContainer>
       ));
     } else {
-      return filteredCardsBySet.map((card) => (
+      return filteredCards.map((card) => (
         <CardContainer key={card.Name}>
           <LorcanaCard card={card} />
         </CardContainer>

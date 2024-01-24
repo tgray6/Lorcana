@@ -22,3 +22,12 @@ export interface ISet {
   Name: string;
   Set_ID: string;
 }
+
+export type InkColor =
+  | "Amber"
+  | "Sapphire"
+  | "Steel"
+  | "Ruby"
+  | "Amethyst"
+  | "Emerald"
+  | null;
