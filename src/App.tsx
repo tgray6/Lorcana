@@ -4,6 +4,7 @@ import CardGrid from "./components/CardGrid";
 import SetList from "./components/SetList";
 import { useState } from "react";
 import { ISet } from "./types/types";
+import InkColorSelector from "./components/InkColorSelector";
 
 export default function App() {
   const [selectedSet, setSelectedSet] = useState<ISet | null>(null);
@@ -40,6 +41,7 @@ export default function App() {
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={"5px"}>
+        <InkColorSelector />
         <CardGrid selectedSet={selectedSet} />
       </GridItem>
     </Grid>

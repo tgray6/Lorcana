@@ -11,7 +11,7 @@ interface Props {
 export default function SetList({ onSelectSet }: Props) {
   const { data, error, isLoading } = useSets();
   //set TFC as default because it is the Set_ID for the cards we fetch on initial load
-  const [activeButton, setActiveButton] = useState<string | null>("TFC");
+  const [activeButton, setActiveButton] = useState<string | null>(null);
 
   const handleSetButtonClick = (set: ISet) => {
     //checks if the Set_ID of the clicked button is equal to the current active button. If they are equal, it keeps the state unchanged (currentActive). Otherwise, it sets the state to the Set_ID of the clicked button.
