@@ -1,14 +1,8 @@
-import { ICard, ISet } from "../types/types";
+import { ICard } from "../types/types";
 import useData from "./useData";
 
-export default function useCards(selectedSet: ISet | null) {
-  const searchParams = selectedSet?.Set_ID
-    ? { search: `Set_ID=${encodeURIComponent(selectedSet.Set_ID)}` }
-    : {};
-
-  return useData<ICard>("/cards/fetch", {
-    params: searchParams,
-  });
+export default function useCards() {
+  return useData<ICard>("/cards/fetch");
 }
 
 // import { useState, useEffect } from "react";

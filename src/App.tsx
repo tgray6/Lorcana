@@ -6,14 +6,8 @@ import { useState } from "react";
 import { ISet } from "./types/types";
 import InkColorSelector from "./components/InkColorSelector";
 import { InkColor } from "./types/types";
-import {
-  sapphire,
-  ruby,
-  amber,
-  emerald,
-  amethyst,
-  steel,
-} from "./assets/images";
+
+import { renderSelectedInkColor } from "./assets/images";
 
 export default function App() {
   const [selectedSet, setSelectedSet] = useState<ISet | null>(null);
@@ -27,32 +21,6 @@ export default function App() {
 
   const handleInkColorFilterClick = (color: InkColor): void => {
     setSelectedInkColor(color);
-  };
-
-  const renderSelectedInkColor = (selectedInkColor: InkColor) => {
-    switch (selectedInkColor) {
-      case "Ruby": {
-        return ruby;
-      }
-      case "Emerald": {
-        return emerald;
-      }
-      case "Sapphire": {
-        return sapphire;
-      }
-      case "Steel": {
-        return steel;
-      }
-      case "Amber": {
-        return amber;
-      }
-      case "Amethyst": {
-        return amethyst;
-      }
-      case null: {
-        return;
-      }
-    }
   };
 
   return (
@@ -84,8 +52,11 @@ export default function App() {
       </Show>
       <GridItem area={"main"} padding={"5px"}>
         <HStack>
-          <InkColorSelector onSelectInkColor={handleInkColorFilterClick} />
-          {selectedInkColor !== null && (
+          <InkColorSelector
+            onSelectInkColor={handleInkColorFilterClick}
+            inkColorSelected={selectedInkColor}
+          />
+          {/* {selectedInkColor !== null && (
             <Image
               boxSize="3rem"
               borderRadius="full"
@@ -93,7 +64,7 @@ export default function App() {
               alt="InkColor"
               mr="12px"
             />
-          )}
+          )} */}
         </HStack>
         <CardGrid
           selectedSet={selectedSet}

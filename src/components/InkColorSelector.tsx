@@ -5,6 +5,7 @@ import {
   MenuList,
   MenuItem,
   Image,
+  HStack,
 } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import { RxReset } from "react-icons/rx";
@@ -16,14 +17,19 @@ import {
   amethyst,
   steel,
 } from "../assets/images";
+import { renderSelectedInkColor } from "../assets/images";
 
 import { InkColor } from "../types/types";
 
 interface Props {
   onSelectInkColor: (color: InkColor) => void;
+  inkColorSelected: InkColor | null;
 }
 
-export default function InkColorSelector({ onSelectInkColor }: Props) {
+export default function InkColorSelector({
+  onSelectInkColor,
+  inkColorSelected,
+}: Props) {
   const handleInkButtonClick = (color: InkColor) => {
     // Call onSelectSet to handle other actions
     onSelectInkColor(color);
@@ -31,8 +37,21 @@ export default function InkColorSelector({ onSelectInkColor }: Props) {
 
   return (
     <Menu>
-      <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Filter By Ink Color
+      <MenuButton as={Button} rightIcon={<BsChevronDown />} width={"200px"}>
+        {inkColorSelected ? (
+          <HStack>
+            <Image
+              boxSize="2rem"
+              borderRadius="full"
+              src={renderSelectedInkColor(inkColorSelected)}
+              alt="amber"
+              mr="12px"
+            />
+            <span>{inkColorSelected}</span>
+          </HStack>
+        ) : (
+          "Filter By Ink Color"
+        )}
       </MenuButton>
       <MenuList>
         <MenuItem onClick={() => handleInkButtonClick("Amber")}>
