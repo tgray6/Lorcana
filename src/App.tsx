@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show, Image, HStack } from "@chakra-ui/react";
+import { Grid, GridItem, Show, HStack } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import CardGrid from "./components/CardGrid";
 import SetList from "./components/SetList";
@@ -6,8 +6,6 @@ import { useState } from "react";
 import { ISet } from "./types/types";
 import InkColorSelector from "./components/InkColorSelector";
 import { InkColor } from "./types/types";
-
-import { renderSelectedInkColor } from "./assets/images";
 
 export default function App() {
   const [selectedSet, setSelectedSet] = useState<ISet | null>(null);
@@ -51,20 +49,11 @@ export default function App() {
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={"5px"}>
-        <HStack>
+        <HStack paddingLeft={3} marginBottom={1}>
           <InkColorSelector
             onSelectInkColor={handleInkColorFilterClick}
             inkColorSelected={selectedInkColor}
           />
-          {/* {selectedInkColor !== null && (
-            <Image
-              boxSize="3rem"
-              borderRadius="full"
-              src={renderSelectedInkColor(selectedInkColor)}
-              alt="InkColor"
-              mr="12px"
-            />
-          )} */}
         </HStack>
         <CardGrid
           selectedSet={selectedSet}
