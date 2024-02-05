@@ -9,6 +9,7 @@ export default function NavBar() {
       px={"10px"}
       borderBottom="4px solid #000"
     >
+      {/* this first Box component is just so we have 3 things up top, so the space-between works, so Lorcana logo is centered and ColorModeSwitch is on the right */}
       <Box />
       <Image src={lorcanaLogo} position={"relative"} h={"125px"} p={2} />
       <ColorModeSwitch />

@@ -74,7 +74,7 @@ export default function App() {
             width={"300px"}
             border={"2px solid black"}
             marginLeft={1}
-            placeholder="Search for a card..."
+            placeholder="Search cards..."
             _placeholder={{ fontWeight: "bold", color: "white" }}
             backgroundColor={"gray"}
             color={"white"}
