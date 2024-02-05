@@ -8,13 +8,20 @@ import { ISet, InkColor } from "../types/types";
 interface Props {
   selectedSet: ISet | null;
   selectedInkColor: InkColor | null;
+  searchedCard: string;
 }
 
-export default function CardGrid({ selectedSet, selectedInkColor }: Props) {
+export default function CardGrid({
+  selectedSet,
+  selectedInkColor,
+  searchedCard,
+}: Props) {
   const { data, error, isLoading } = useCards();
   const skeletons = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];
+
+  searchedCard = searchedCard.toLowerCase().trim();
 
   const filteredCards = data
     //set the initial loading to be just TFC so it loads a lot quicker
@@ -25,6 +32,11 @@ export default function CardGrid({ selectedSet, selectedInkColor }: Props) {
     .filter(
       (card) =>
         selectedInkColor === null || card.Color.includes(selectedInkColor)
+    )
+    .filter((card) =>
+      searchedCard.trim() === ""
+        ? true
+        : card.Name.toLowerCase().includes(searchedCard)
     );
 
   const RenderContent = () => {

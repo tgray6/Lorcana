@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show, HStack } from "@chakra-ui/react";
+import { Grid, GridItem, Show, Flex, Input } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import CardGrid from "./components/CardGrid";
 import SetList from "./components/SetList";
@@ -12,6 +12,12 @@ export default function App() {
   const [selectedInkColor, setSelectedInkColor] = useState<InkColor | null>(
     null
   );
+
+  const [searchedCard, setSearchedCard] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchedCard(e.target.value);
+  };
 
   const handleClick = (set: ISet): void => {
     setSelectedSet(set);
@@ -32,6 +38,7 @@ export default function App() {
         base: "1fr",
         lg: "200px 1fr",
       }}
+      height="100%vh"
     >
       <GridItem area={"nav"} bg={"#F6AD55"}>
         <NavBar />
@@ -40,24 +47,43 @@ export default function App() {
         <GridItem
           area={"aside"}
           bg={"gray"}
-          maxWidth={"180px"}
-          width={"180px"}
-          h={"100%vh"}
           borderRight="4px solid #000"
+          position="sticky" // Use sticky for relative positioning
+          top={0}
+          height="100vh" // Set the height to 100% of the viewport
         >
           <SetList onSelectSet={handleClick} />
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={"5px"}>
-        <HStack paddingLeft={3} marginBottom={1}>
+        <Flex
+          paddingLeft={3}
+          marginBottom={1}
+          position="sticky" // Use sticky for relative positioning
+          top={0}
+          zIndex={1}
+        >
           <InkColorSelector
             onSelectInkColor={handleInkColorFilterClick}
             inkColorSelected={selectedInkColor}
           />
-        </HStack>
+          <Input
+            type="text"
+            value={searchedCard}
+            onChange={handleInputChange}
+            width={"300px"}
+            border={"2px solid black"}
+            marginLeft={1}
+            placeholder="Search for a card..."
+            _placeholder={{ fontWeight: "bold", color: "white" }}
+            backgroundColor={"gray"}
+            color={"white"}
+          />
+        </Flex>
         <CardGrid
           selectedSet={selectedSet}
           selectedInkColor={selectedInkColor}
+          searchedCard={searchedCard}
         />
       </GridItem>
     </Grid>

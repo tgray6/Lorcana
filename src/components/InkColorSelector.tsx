@@ -37,20 +37,28 @@ export default function InkColorSelector({
 
   return (
     <Menu>
-      <MenuButton as={Button} rightIcon={<BsChevronDown />} width={"200px"}>
+      <MenuButton
+        style={{ backgroundColor: "gray", zIndex: "999" }}
+        as={Button}
+        rightIcon={<BsChevronDown />}
+        width={"200px"}
+        border={"2px solid black"}
+        fontWeight={"bold"}
+        color={"white"}
+      >
         {inkColorSelected ? (
           <HStack>
             <Image
               boxSize="2rem"
               borderRadius="full"
               src={renderSelectedInkColor(inkColorSelected)}
-              alt="amber"
+              alt={inkColorSelected}
               mr="12px"
             />
             <span>{inkColorSelected}</span>
           </HStack>
         ) : (
-          "Filter By Ink Color"
+          "Filter by ink color"
         )}
       </MenuButton>
       <MenuList>
