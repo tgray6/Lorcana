@@ -1,6 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import floodBornLogo from "../assets/floodbornLogo.webp";
 import firstChapterLogo from "../assets/firstChapterLogo.webp";
+import intoTheLandsLogo from "../assets/intoTheInklands.webp";
 import { ISet } from "../types/types";
 
 interface Props {
@@ -20,9 +21,9 @@ export default function SetButton({ onSelectSet, set, active }: Props) {
       bgImage={
         set.Set_ID === "TFC"
           ? firstChapterLogo
-          : set.Set_ID === "RFB"
+          : set.Set_ID === "ROF"
           ? floodBornLogo
-          : "New Expansion, No Image, Update Frontend"
+          : intoTheLandsLogo
       }
       bgPosition="center"
       bgRepeat="no-repeat"
