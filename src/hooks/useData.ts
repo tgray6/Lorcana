@@ -18,12 +18,13 @@ export default function useData<T>(
       .get<T[]>(endpoint, { signal: controller.signal, ...requestConfig })
       .then((res) => {
         setData(res.data);
-        setIsLoading(false);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
-        setIsLoading(false);
         setError(err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
     return () => controller.abort();
   }, []);
